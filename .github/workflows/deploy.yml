@@ -11,6 +11,9 @@ jobs:
     permissions:
       contents: read
       deployments: write
+    env:
+      # Opt into Node 24 ahead of the June 2026 forced cutover.
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     steps:
       - uses: actions/checkout@v4
 
