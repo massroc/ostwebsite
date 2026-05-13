@@ -19,4 +19,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=ostwebsite --branch=main --commit-dirty=true
+          # --branch=production matches the Pages project's production branch
+          # (the project was created via Direct Upload; its production branch is "production")
+          # so deploys land as Production and serve at opensystemstheory.org.
+          command: pages deploy . --project-name=ostwebsite --branch=production --commit-dirty=true
