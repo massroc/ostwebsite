@@ -1,0 +1,46 @@
+# Cloudflare Pages redirects.
+# Format: <from>  <to>  <status>
+# 301 = permanent. Order matters; first match wins. Splat (* / :placeholder) supported.
+
+# Old /home/* paths → clean root-level paths.
+/home/key-concepts/                                   /key-concepts/                                  301
+/home/key-concepts/design-principles/                 /key-concepts/design-principles/                301
+/home/key-concepts/the-six-criteria/                  /key-concepts/the-six-criteria/                 301
+/home/tools-of-ost/                                   /tools-of-ost/                                  301
+/home/tools-of-ost/search-conference/                 /tools-of-ost/search-conference/                301
+/home/tools-of-ost/participative-design-workshop/     /tools-of-ost/participative-design-workshop/    301
+/home/tools-of-ost/unique-design/                     /tools-of-ost/unique-design/                    301
+/home/learning/                                       /resources/                                     301
+/home/learning/case-studies/                          /resources/case-studies/                        301
+/home/learning/further-reading/                       /resources/further-reading/                     301
+/home/learning/origins_of_our_group/                  /resources/origins-of-our-group/                301
+/home/learning/ost-talks/                             /resources/ost-talks/                           301
+/home/learning/practitioners/                         /resources/practitioners/                       301
+/home/learning/qa-with-ost-co-creator-dr-merrelyn-emery/  /resources/qa-with-merrelyn-emery/          301
+/home/a-history-of-ost/                               /about/history/                                 301
+/home/ost-primer/                                     /about/ost-primer/                              301
+/home/contact/                                        /contact/                                       301
+/home/contact/services/                               /contact/services/                              301
+
+# The System and the Environment used to live at the top level.
+/the-system-and-the-environment/                      /key-concepts/the-system-and-the-environment/   301
+
+# Stale WP duplicate paths that the old install exposed.
+/sample-page/key-concepts/                            /key-concepts/                                  301
+/sample-page/tools-of-ost/                            /tools-of-ost/                                  301
+/sample-page/tools-of-ost/unique-design/              /tools-of-ost/unique-design/                    301
+/sample-page/tools-of-ost/__trashed/                  /tools-of-ost/participative-design-workshop/    301
+/key-concepts/search-conference/                      /tools-of-ost/search-conference/                301
+/practitioners/                                       /resources/practitioners/                       301
+
+# Sweep up any remaining /home/* miss → homepage.
+/home/*                                               /                                                301
+
+# Drop legacy WP plumbing endpoints entirely (return 410 so crawlers stop trying).
+/wp-json/*                                            /                                                404
+/wp-admin/*                                           /                                                404
+/wp-content/*                                         /                                                404
+/wp-includes/*                                        /                                                404
+/feed/*                                               /                                                404
+/comments/*                                           /                                                404
+/xmlrpc.php                                           /                                                404

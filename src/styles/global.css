@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+@import "@fontsource/roboto-slab/400.css";
+@import "@fontsource/roboto-slab/600.css";
+@import "@fontsource/roboto-slab/700.css";
+
+/* Brand tokens. Tailwind v4 reads these as utility values via @theme. */
+@theme {
+  --font-sans: "Roboto", system-ui, sans-serif;
+  --font-serif: "Roboto Slab", Georgia, serif;
+
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-500: #046bd2;
+  --color-brand-600: #045cb4;
+  --color-brand-700: #034a91;
+  --color-brand-900: #022e5c;
+
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-ink-200: #e2e8f0;
+  --color-ink-50: #f8fafc;
+}
+
+/* Sensible defaults that don't depend on Tailwind's reset alone. */
+html {
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+  background: white;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Prose styling for rendered Markdown bodies. */
+.prose {
+  max-width: 70ch;
+  line-height: 1.65;
+}
+.prose h2 { font-size: 1.75rem; margin: 2.25rem 0 0.75rem; }
+.prose h3 { font-size: 1.3rem;  margin: 1.75rem 0 0.5rem; }
+.prose p, .prose ul, .prose ol { margin: 0.85rem 0; }
+.prose ul { list-style: disc; padding-left: 1.4rem; }
+.prose ol { list-style: decimal; padding-left: 1.4rem; }
+.prose a { color: var(--color-brand-600); text-decoration: underline; text-underline-offset: 2px; }
+.prose a:hover { color: var(--color-brand-700); }
+.prose blockquote {
+  border-left: 3px solid var(--color-brand-500);
+  padding-left: 1rem;
+  color: var(--color-ink-700);
+  font-style: italic;
+  margin: 1.25rem 0;
+}
+.prose img { border-radius: 0.25rem; }
