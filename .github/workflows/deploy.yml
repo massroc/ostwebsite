@@ -3,6 +3,8 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -12,17 +14,30 @@ jobs:
       contents: read
       deployments: write
     env:
-      # Opt into Node 24 ahead of the June 2026 forced cutover.
+      # Opt into Node 24 ahead of GitHub's June 2026 forced cutover.
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # --branch=production matches the Pages project's production branch
-          # (the project was created via Direct Upload; its production branch is "production")
-          # so deploys land as Production and serve at opensystemstheory.org.
-          command: pages deploy . --project-name=ostwebsite --branch=production --commit-dirty=true
+          # On main → production deploy. On PRs / other branches → preview.
+          command: >-
+            pages deploy ./dist
+            --project-name=ostwebsite
+            --branch=${{ github.ref == 'refs/heads/main' && 'production' || github.head_ref || github.ref_name }}
+            --commit-dirty=true
