@@ -46,6 +46,7 @@ If the content references images, drop them into `public/images/` and use root-r
 - Don't edit files via the Cloudflare dashboard — GitHub is the source of truth, and the next push would overwrite dashboard changes.
 - Don't add Workers/KV/R2/etc. without updating the API token's scopes (currently Pages-only by design — see project memory).
 - Don't reintroduce the `/home/` URL prefix; legacy paths are 301'd via `public/_redirects` and shouldn't recur.
+- Don't touch the MX / SPF DNS records for `opensystemstheory.org` — they're managed by Cloudflare Email Routing (see README "Email" section). Changing them silently breaks inbound mail to `ross@`, `info@`, `admin@`.
 
 ## Useful commands
 

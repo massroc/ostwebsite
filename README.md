@@ -57,3 +57,13 @@ npm run preview      # serve ./dist
 GitHub Actions builds and runs `wrangler pages deploy ./dist` against the Cloudflare Pages project `ostwebsite`. `--branch=production` on `main` → live site; PRs and other branches → preview URLs.
 
 Secrets in GitHub: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`.
+
+## Email
+
+Inbound mail for `opensystemstheory.org` is handled by **Cloudflare Email Routing** (free, forward-only — no mailboxes hosted). Configured addresses:
+
+- `ross@opensystemstheory.org`
+- `info@opensystemstheory.org`
+- `admin@opensystemstheory.org`
+
+All forward to Ross's primary inbox. Managed in the Cloudflare dashboard under the domain's **Email → Email Routing** tab; MX/SPF records are maintained there. Sending *from* these addresses is not set up — replies go out from the destination inbox.
